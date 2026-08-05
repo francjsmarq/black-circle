@@ -1,0 +1,10 @@
+{
+  "name": "Black Circle",
+  "short_name": "Black Circle",
+  "description": "Black Circle is a privately built business ecosystem operating across talent, automotive, property, fashion and emerging ventures.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

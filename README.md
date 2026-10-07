@@ -97,3 +97,29 @@ HTML semântico, navegação por teclado (Enter/Espaço/Esc na intro), focus sta
 ## Migração futura para CMS
 
 Todo o conteúdo vive em `lib/content.ts`, com um export por "documento". Para Sanity/Strapi/Contentful/Supabase: cria coleções com a mesma forma dos exports e substitui os imports por fetches em Server Components — os componentes não precisam de mudar.
+
+---
+
+## Intro em vídeo (Kling AI ou outro)
+
+A intro pode ser um vídeo em vez do buraco negro 3D. Está tudo pronto, só falta o ficheiro.
+
+1. Gera o vídeo (16:9, até 15s; o último plano deve ser o logótipo, parado, sobre preto)
+2. Guarda-o como `public/intro/intro.mp4`
+3. Faz o deploy (`git add -A`, `git commit`, `git push`)
+
+**Como se comporta**
+- Toca sem som (os browsers só permitem autoplay sem som); o botão de som liga o áudio do vídeo se `videoHasAudio: true`, ou o rumble grave procedural se for `false`
+- Skip por botão, clique, scroll, toque ou Esc
+- Visitas repetidas: toca mais depressa (`videoRepeatSpeed` em `lib/config.ts`)
+- Se o ficheiro faltar, falhar, demorar mais de 8s a arrancar ou o autoplay for bloqueado, usa automaticamente a intro 3D. Com "reduzir movimento" ativo, usa a versão simples. A intro nunca bloqueia o site
+- Para voltar só à intro 3D: `mode: "shader"` em `lib/config.ts`
+
+**Comprimir o vídeo (importante: ficheiros grandes carregam devagar)**
+Objetivo: 4 a 8 MB. Com o `ffmpeg` instalado:
+```
+ffmpeg -i original.mp4 -vf "scale=1920:-2" -c:v libx264 -preset slow -crf 24 -pix_fmt yuv420p -movflags +faststart -an intro.mp4
+```
+(`-an` remove o áudio; se usares o som do vídeo, troca por `-c:a aac -b:a 128k` e põe `videoHasAudio: true`.)
+
+**Opcionais** (em `lib/config.ts`): `videoSrcMobile` (versão vertical 9:16 para telemóvel) e `videoPoster` (imagem mostrada enquanto carrega).

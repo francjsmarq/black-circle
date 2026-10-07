@@ -63,7 +63,7 @@ export default function IntroExperience({ onComplete }: Props) {
     const start = performance.now();
     const tick = () => {
       if (cancelled) return;
-      const p = Math.min((performance.now() - start) / 900, 1);
+      const p = Math.min((performance.now() - start) / 400, 1);
       setLoadProgress(p);
       if (p < 1) requestAnimationFrame(tick);
       else setMode("webgl");

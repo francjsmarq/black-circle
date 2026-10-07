@@ -1,14 +1,23 @@
-import { footer, site } from "@/lib/content";
+import { address, footer, site } from "@/lib/content";
 
 export default function Footer() {
   return (
     <footer className="border-t border-line/40 px-6 pb-10 pt-20 sm:px-10">
       <div className="mx-auto w-full max-w-[1560px]">
         <div className="flex flex-col justify-between gap-12 md:flex-row md:items-start">
-          <div className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-mark.png" alt="" aria-hidden className="h-6 w-6" />
-            <span className="font-sans text-xs tracking-vast text-bone">{site.name}</span>
+          <div>
+            <div className="flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-mark.png" alt="" aria-hidden className="h-6 w-6" />
+              <span className="font-sans text-xs tracking-vast text-bone">{site.name}</span>
+            </div>
+            <address className="mt-8 font-sans text-xs font-light not-italic leading-relaxed text-gunmetal">
+              {address.lines.map((l) => (
+                <span key={l} className="block">
+                  {l}
+                </span>
+              ))}
+            </address>
           </div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-16 gap-y-4 sm:grid-cols-3">
             {footer.links.map((l) => (

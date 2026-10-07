@@ -91,6 +91,12 @@ export const ourWorld: { eyebrow: string; sectors: Sector[] } = {
       status: "CONTACT",
     },
     {
+      id: "events",
+      name: "EVENTS",
+      description: "Private events, brand activations and experiential production.",
+      status: "CONTACT",
+    },
+    {
       id: "ventures",
       name: "VENTURES",
       description: "New projects, partnerships and strategic opportunities.",
@@ -125,8 +131,9 @@ export const philosophy = {
 export const founders = {
   eyebrow: "FOUNDERS",
   people: [
-    { name: "FRANCISCO MARQUES", role: "CO-FOUNDER" },
     { name: "YOHANN SILVA", role: "CO-FOUNDER" },
+    { name: "FRANCISCO MARQUES", role: "CO-FOUNDER" },
+    { name: "DANIEL SILVA", role: "CO-FOUNDER" },
   ],
   phrase: "Built from ambition. Structured for scale.",
 };
@@ -166,6 +173,23 @@ export const contact = {
   ],
   cta: "REQUEST ACCESS",
   success: "Request received. The Circle will reach you.",
+};
+
+export const address = {
+  label: "OFFICE",
+  lines: [
+    "Centro Empresarial da Feira (CEF)",
+    "Rua Centro Empresarial do Cavaco, nº 125",
+    "4520-630 Santa Maria da Feira",
+    "Portugal",
+  ],
+  // usado no schema.org (SEO)
+  schema: {
+    streetAddress: "Centro Empresarial da Feira (CEF), Rua Centro Empresarial do Cavaco, nº 125",
+    postalCode: "4520-630",
+    addressLocality: "Santa Maria da Feira",
+    addressCountry: "PT",
+  },
 };
 
 export const footer = {

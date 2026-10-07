@@ -145,9 +145,9 @@ export const fragmentShader = /* glsl */ `
 
     vec3 bg;
     if (uQuality > 0.5) {
-      float bendR = mass / dd * 0.985;
+      float bendR = mass / dd * 0.996;
       float bendG = mass / dd;
-      float bendB = mass / dd * 1.015;
+      float bendB = mass / dd * 1.004;
       bg.r = scene(uv * (1.0 + bendR), dust, t).r;
       bg.g = scene(uv * (1.0 + bendG), dust, t).g;
       bg.b = scene(uv * (1.0 + bendB), dust, t).b;
@@ -162,9 +162,10 @@ export const fragmentShader = /* glsl */ `
     float ad = length(auv);
     float ang = atan(auv.y, auv.x);
 
-    float swirlDetail = uQuality > 0.5
-      ? fbmWarp(vec2(ang * 2.4 + t * 0.24, ad * 10.0 - t * 0.4))
-      : fbm(vec2(ang * 2.2 + t * 0.22, ad * 9.0 - t * 0.35));
+    // ruído periódico em ângulo (cos/sin) para não haver costura onde atan() dá a volta
+    float a2 = ang + t * 0.1;
+    vec2 swirlP = vec2(cos(a2), sin(a2)) * 2.6 + vec2(ad * 9.0 - t * 0.4);
+    float swirlDetail = uQuality > 0.5 ? fbmWarp(swirlP) : fbm(swirlP);
 
     float ring = smoothstep(holeR * 2.5, holeR * 1.1, ad)
                * smoothstep(holeR * 0.97, holeR * 1.16, ad);

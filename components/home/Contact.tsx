@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { contact } from "@/lib/content";
+import { address, contact } from "@/lib/content";
 import { useReveal } from "@/lib/useReveal";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -39,6 +39,16 @@ export default function Contact() {
           <p data-reveal className="mt-8 max-w-sm font-serif text-lg font-light leading-relaxed text-silver opacity-0">
             {contact.sub}
           </p>
+          <div data-reveal className="mt-10 opacity-0">
+            <p className="font-sans text-[10px] tracking-vast text-gunmetal">{address.label}</p>
+            <address className="mt-4 font-sans text-xs font-light not-italic leading-relaxed text-silver">
+              {address.lines.map((l) => (
+                <span key={l} className="block">
+                  {l}
+                </span>
+              ))}
+            </address>
+          </div>
         </div>
 
         <div className="col-span-12 md:col-span-7 md:col-start-6">

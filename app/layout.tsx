@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { site } from "@/lib/content";
+import { address, site } from "@/lib/content";
 import Cursor from "@/components/ui/Cursor";
 
 export const metadata: Metadata = {
@@ -39,6 +39,7 @@ const orgSchema = {
   url: site.url,
   description: site.description,
   slogan: "Private by nature. Global by vision.",
+  address: { "@type": "PostalAddress", ...address.schema },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -14,7 +14,7 @@ import Contact from "@/components/home/Contact";
 import Footer from "@/components/home/Footer";
 
 // Intro carregada apenas no cliente (WebGL) — lazy, fora do bundle inicial
-const IntroExperience = dynamic(() => import("@/components/intro/IntroExperience"), {
+const IntroSwitch = dynamic(() => import("@/components/intro/IntroSwitch"), {
   ssr: false,
 });
 
@@ -31,7 +31,7 @@ export default function Page() {
 
   return (
     <SmoothScroll>
-      {mounted && !entered && <IntroExperience onComplete={onIntroComplete} />}
+      {mounted && !entered && <IntroSwitch onComplete={onIntroComplete} />}
 
       {/* Homepage: emerge da escuridão em contínuo com a travessia do portal */}
       <div
